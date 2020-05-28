@@ -1,3 +1,11 @@
 import React from "react";
 import RecipeList from "./components/Recipes-list";
-export const App = () => <RecipeList />;
+import CreateRecipeForm from "./components/CreateRecipeForm";
+export const App = () => {
+  return (
+    <div>
+      <CreateRecipeForm />
+      <RecipeList />
+    </div>
+  );
+};

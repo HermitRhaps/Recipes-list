@@ -1,7 +1,5 @@
-// import { initialState } from "./initialState";
-// import { CREATE_RECIPE } from "./types/types";
-
-export const recipeReducer = (state = [], action) => {
+import { initialState } from "./initialState";
+export const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CREATE_RECIPE":
       return [...state, { text: action.text }];
