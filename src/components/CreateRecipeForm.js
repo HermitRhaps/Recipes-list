@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { createRecipe } from "../redux/actions/createRecipe";
-import "../styles/createRecipeForm.scss";
 const CreateRecipeForm = ({ dispatch, state }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");

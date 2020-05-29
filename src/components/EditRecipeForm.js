@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { editRecipe } from "../redux/actions/editRecipe";
-
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 const EditRecipeForm = ({ state, dispatch, id }) => {
   const [newTitle, setTitle] = useState(state.recipes[id].text);
   const [newImage, setImage] = useState("");
@@ -28,30 +29,32 @@ const EditRecipeForm = ({ state, dispatch, id }) => {
   }
   return (
     <Fragment>
-      <h2>Edit</h2>
-      <form onSubmit={submitForm} className="form">
-        <input
-          value={newTitle}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <input type="file" onChange={(e) => submitImage(e)} />
-        <select onChange={(e) => setRecipeGroup(e.target.value)}>
-          {state.categories.map((group, index) => (
-            <option key={index} value={group}>
-              {group}
-            </option>
-          ))}
-        </select>
-        <textarea
-          value={newDescription}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <button type="submit" onClick={submitClick}>
-          Click
-        </button>
-      </form>
+      <Paper elevation={0}>
+        <h2>Edit</h2>
+        <form onSubmit={submitForm} className="form">
+          <input
+            value={newTitle}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+          <input type="file" onChange={(e) => submitImage(e)} />
+          <select onChange={(e) => setRecipeGroup(e.target.value)}>
+            {state.categories.map((group, index) => (
+              <option key={index} value={group}>
+                {group}
+              </option>
+            ))}
+          </select>
+          <textarea
+            value={newDescription}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+          <button type="submit" onClick={submitClick}>
+            Click
+          </button>
+        </form>
+      </Paper>
     </Fragment>
   );
 };

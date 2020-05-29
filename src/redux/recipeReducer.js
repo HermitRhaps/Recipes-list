@@ -26,19 +26,6 @@ export const recipeReducer = (state = initialState, action) => {
           },
         },
       });
-    // state.recipes.map((item, index) => {
-    //   if (index === action.id) {
-    //     return {
-    //       ...item,
-    //       // image: action.newImage,
-    //       // group: action.newGroup,
-    //       // description: action.newDescription,
-    //     };
-    //   }
-    //   return {
-    //     ...item,
-    //   };
-    // });
     default:
       return state;
   }
