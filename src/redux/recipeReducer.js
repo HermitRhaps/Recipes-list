@@ -1,8 +1,44 @@
 import { initialState } from "./initialState";
+import update from "immutability-helper";
 export const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "CREATE_RECIPE":
-      return [...state, { text: action.text }];
+      return {
+        ...state,
+        recipes: [
+          ...state.recipes,
+          {
+            text: action.text,
+            image: action.image,
+            group: action.group,
+            description: action.description,
+          },
+        ],
+      };
+    case "EDIT_RECIPE":
+      return update(state, {
+        recipes: {
+          [action.id]: {
+            text: { $set: action.newText },
+            image: { $set: action.newImage },
+            group: { $set: action.newGroup },
+            description: { $set: action.newDescription },
+          },
+        },
+      });
+    // state.recipes.map((item, index) => {
+    //   if (index === action.id) {
+    //     return {
+    //       ...item,
+    //       // image: action.newImage,
+    //       // group: action.newGroup,
+    //       // description: action.newDescription,
+    //     };
+    //   }
+    //   return {
+    //     ...item,
+    //   };
+    // });
     default:
       return state;
   }

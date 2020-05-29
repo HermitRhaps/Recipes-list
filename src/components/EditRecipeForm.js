@@ -1,27 +1,22 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { createRecipe } from "../redux/actions/createRecipe";
-import "../styles/createRecipeForm.scss";
-const CreateRecipeForm = ({ dispatch, state }) => {
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [recipeGroup, setRecipeGroup] = useState("");
-  const [description, setDescription] = useState("");
+import { editRecipe } from "../redux/actions/editRecipe";
+
+const EditRecipeForm = ({ state, dispatch, id }) => {
+  const [newTitle, setTitle] = useState(state.recipes[id].text);
+  const [newImage, setImage] = useState("");
+  const [newRecipeGroup, setRecipeGroup] = useState(state.recipes[id].group);
+  const [newDescription, setDescription] = useState(
+    state.recipes[id].description
+  );
   function submitForm(e) {
     e.preventDefault();
   }
   function submitClick(e) {
-    if (
-      title.trim() &&
-      image.trim() &&
-      recipeGroup.trim() &&
-      description.trim()
-    ) {
-      dispatch(createRecipe(title, image, recipeGroup, description));
-      console.log(state);
-    } else {
-      dispatch(createRecipe(title, image, state.categories[0], description));
-    }
+    dispatch(
+      editRecipe(id, newTitle, newImage, newRecipeGroup, newDescription)
+    );
+    console.log(state);
   }
   function submitImage(e) {
     e.preventDefault();
@@ -33,10 +28,10 @@ const CreateRecipeForm = ({ dispatch, state }) => {
   }
   return (
     <Fragment>
-      <h2>Create form</h2>
+      <h2>Edit</h2>
       <form onSubmit={submitForm} className="form">
         <input
-          value={title}
+          value={newTitle}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -50,7 +45,7 @@ const CreateRecipeForm = ({ dispatch, state }) => {
           ))}
         </select>
         <textarea
-          value={description}
+          value={newDescription}
           onChange={(e) => setDescription(e.target.value)}
         />
         <button type="submit" onClick={submitClick}>
@@ -64,4 +59,4 @@ const CreateRecipeForm = ({ dispatch, state }) => {
 const mapStateToProps = (state) => ({
   state: state.recipeReducer,
 });
-export default connect(mapStateToProps, null)(CreateRecipeForm);
+export default connect(mapStateToProps, null)(EditRecipeForm);

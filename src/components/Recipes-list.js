@@ -1,25 +1,17 @@
-import React, { useState } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { createRecipe } from "../redux/actions/createRecipe";
-const RecipeList = ({ dispatch }) => {
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  function submitClick(e) {
-    e.preventDefault();
-    dispatch(createRecipe(e.target.value));
-  }
+import { Recipe } from "./Recipe";
+const RecipeList = ({ state, dispatch }) => {
   return (
-    <div className="container">
-      <h1>Hi</h1>
-      <button value="f" onClick={submitClick}>
-        Click
-      </button>
-    </div>
+    <Fragment>
+      {state.recipes.map((item, index) => (
+        <Recipe key={index} index={index} state={item} />
+      ))}
+    </Fragment>
   );
 };
 
 const mapStateToProps = (state) => ({
-  text: state.text,
+  state: state.recipeReducer,
 });
 export default connect(mapStateToProps, null)(RecipeList);

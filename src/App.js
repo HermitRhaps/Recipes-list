@@ -1,11 +1,9 @@
 import React from "react";
-import RecipeList from "./components/Recipes-list";
-import CreateRecipeForm from "./components/CreateRecipeForm";
+import { Initial } from "./components/Initial";
 export const App = () => {
   return (
     <div>
-      <CreateRecipeForm />
-      <RecipeList />
+      <Initial />
     </div>
   );
 };
