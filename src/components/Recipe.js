@@ -9,60 +9,54 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import EditRecipeForm from "./EditRecipeForm";
-
+import { connect } from "react-redux";
+import { deleteRecipe } from "../redux/actions/deleteRecipe";
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
 });
-export const Recipe = (props, { edit }) => {
+const Recipe = ({ index, item, dispatch }) => {
   const classes = useStyles();
   const [editRecipeModal, setEditRecupeModal] = useState(false);
   const [editIndex, setIndex] = useState();
+
   return (
     <Card className={classes.root}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          alt=""
-          height="140"
-          image={props.state.image}
-        />
+        <CardMedia component="img" alt="" height="140" image={item.image} />
         <CardContent>
           <Typography gutterBottom variant="h3">
-            {props.state.text}
+            {item.text}
           </Typography>
           <Typography gutterBottom variant="h5">
-            {props.state.group}
+            {item.group}
           </Typography>
           <Typography variant="body1" color="textSecondary" component="p">
-            {props.state.description}
+            {item.description}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <button
+          value={index}
+          onClick={(e) => setIndex(e.target.value) || setEditRecupeModal(true)}
+        >
+          Edit
+        </button>
+        <button
+          value={index}
+          onClick={(e) => dispatch(deleteRecipe(e.target.value))}
+        >
+          Delete
+        </button>
+        {editRecipeModal ? <EditRecipeForm id={editIndex} /> : null}
       </CardActions>
     </Card>
-    // <div className="container">
-    //   <h1>{props.state.text}</h1>
-    //   <h2>{props.state.group}</h2>
-    //   {editRecipeModal ? <EditRecipeForm id={editIndex} /> : null}
-    //   <form className="form" onSubmit={(e) => e.preventDefault()}>
-    //     <img src={props.state.image} alt="" />
-    //     <textarea value={props.state.description} disabled />
-    //     <button
-    //       value={props.index}
-    //       onClick={(e) => setEditRecupeModal(true) || setIndex(e.target.value)}
-    //     >
-    //       Re
-    //     </button>
-    //   </form>
-    // </div>
   );
 };
+
+const mapStateToProps = (state) => ({
+  state: state.recipeReducer,
+});
+export default connect(mapStateToProps, null)(Recipe);

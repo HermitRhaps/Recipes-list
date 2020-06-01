@@ -1,8 +1,35 @@
-.container {
-  .form {
-    margin: auto;
+* {
+  box-sizing: border-box;
+  resize: none;
+}
+
+.modal_container {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  border: 1px solid #333333;
+  width: 50%;
+  .modal_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2.5%;
+    .modal_title {
+      text-align: center;
+    }
+    .modal_close {
+      padding: 1%;
+      height: auto;
+    }
+  }
+  .modal_form {
+    background: gray;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 50%;
+    margin: auto;
+    input[type="text"] {
+      width: 100%;
+    }
   }
 }

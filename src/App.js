@@ -1,9 +1,9 @@
 import React from "react";
-import { Initial } from "./components/Initial";
+import { Main } from "./components/Main";
 export const App = () => {
   return (
     <div>
-      <Initial />
+      <Main />
     </div>
   );
 };

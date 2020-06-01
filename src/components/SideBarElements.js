@@ -1,20 +1,13 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import Button from "@material-ui/core/Button";
 const SideBarElements = ({ state, style }) => {
   return (
-    <Fragment>
+    <div>
       {state.recipes.map((item, index) => (
-        <Button
-          className={style.button}
-          variant="contained"
-          data-do="createModal"
-          key={index}
-        >
-          {item.text}
-        </Button>
+        <button key={index}>{item.text}</button>
       ))}
-    </Fragment>
+    </div>
   );
 };
 

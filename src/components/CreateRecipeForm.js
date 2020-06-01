@@ -1,11 +1,13 @@
 import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { createRecipe } from "../redux/actions/createRecipe";
+import "../styles/createRecipeForm.scss";
 const CreateRecipeForm = ({ dispatch, state }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [recipeGroup, setRecipeGroup] = useState("");
   const [description, setDescription] = useState("");
+
   function submitForm(e) {
     e.preventDefault();
   }
@@ -31,9 +33,12 @@ const CreateRecipeForm = ({ dispatch, state }) => {
     fileReader.readAsDataURL(e.target.files[0]);
   }
   return (
-    <Fragment>
-      <h2>Create form</h2>
-      <form onSubmit={submitForm} className="form">
+    <div className="modal_container">
+      <div className="modal_header">
+        <h2 className="modal_title">Create form</h2>
+        <button className="modal_close">Close</button>
+      </div>
+      <form onSubmit={submitForm} className="modal_form">
         <input
           value={title}
           onChange={(e) => {
@@ -56,7 +61,7 @@ const CreateRecipeForm = ({ dispatch, state }) => {
           Click
         </button>
       </form>
-    </Fragment>
+    </div>
   );
 };
 

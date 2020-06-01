@@ -26,6 +26,15 @@ export const recipeReducer = (state = initialState, action) => {
           },
         },
       });
+    case "DELETE_RECIPE":
+      return update(state, {
+        recipes: { $splice: [[action.id, 1]] },
+      });
+    case "FILTER_RECIPE":
+      return {
+        ...state,
+        recipes: state.recipes.filter((item) => item.group === action.category),
+      };
     default:
       return state;
   }

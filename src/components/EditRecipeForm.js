@@ -28,7 +28,7 @@ const EditRecipeForm = ({ state, dispatch, id }) => {
     fileReader.readAsDataURL(e.target.files[0]);
   }
   return (
-    <Fragment>
+    <div>
       <Paper elevation={0}>
         <h2>Edit</h2>
         <form onSubmit={submitForm} className="form">
@@ -55,7 +55,7 @@ const EditRecipeForm = ({ state, dispatch, id }) => {
           </button>
         </form>
       </Paper>
-    </Fragment>
+    </div>
   );
 };
 
