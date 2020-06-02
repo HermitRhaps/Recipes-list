@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { editRecipe } from "../redux/actions/editRecipe";
-import { makeStyles } from "@material-ui/core/styles";
+
 import Paper from "@material-ui/core/Paper";
 const EditRecipeForm = ({ state, dispatch, id }) => {
   const [newTitle, setTitle] = useState(state.recipes[id].text);

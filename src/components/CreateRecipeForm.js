@@ -1,8 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createRecipe } from "../redux/actions/createRecipe";
 import "../styles/createRecipeForm.scss";
-const CreateRecipeForm = ({ dispatch, state }) => {
+import { TextField, Button } from "@material-ui/core";
+
+const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [recipeGroup, setRecipeGroup] = useState("");
@@ -10,6 +12,14 @@ const CreateRecipeForm = ({ dispatch, state }) => {
 
   function submitForm(e) {
     e.preventDefault();
+    if (
+      !title.trim() &&
+      !image.trim() &&
+      !recipeGroup.trim() &&
+      !description.trim()
+    ) {
+      setTitle("") && setImage("") && setRecipeGroup("") && setDescription("");
+    }
   }
   function submitClick(e) {
     if (
@@ -20,8 +30,6 @@ const CreateRecipeForm = ({ dispatch, state }) => {
     ) {
       dispatch(createRecipe(title, image, recipeGroup, description));
       console.log(state);
-    } else {
-      dispatch(createRecipe(title, image, state.categories[0], description));
     }
   }
   function submitImage(e) {
@@ -36,29 +44,65 @@ const CreateRecipeForm = ({ dispatch, state }) => {
     <div className="modal_container">
       <div className="modal_header">
         <h2 className="modal_title">Create form</h2>
-        <button className="modal_close">Close</button>
+        <Button className="modal_close" onClick={() => isOpen(false)}>
+          Close
+        </Button>
       </div>
-      <form onSubmit={submitForm} className="modal_form">
-        <input
+      <form
+        onSubmit={submitForm}
+        className="modal_form"
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          id="outlined-basic"
+          label="Recipe title"
+          variant="outlined"
+          className="titleInput"
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         />
-        <input type="file" onChange={(e) => submitImage(e)} />
-        <select onChange={(e) => setRecipeGroup(e.target.value)}>
+        <TextField
+          type="file"
+          name="file"
+          id="file"
+          className="inputFile"
+          onChange={(e) => submitImage(e)}
+        />
+        {!image ? (
+          <label htmlFor="file" className="inputFileLabel" variant="outlined">
+            Choose a image
+          </label>
+        ) : (
+          <label htmlFor="file" className="inputFileLabel" variant="outlined">
+            Change image: {image}
+          </label>
+        )}
+        <select
+          className="inputSelect"
+          onChange={(e) => setRecipeGroup(e.target.value)}
+        >
+          <option selected disabled>
+            Select category
+          </option>
           {state.categories.map((group, index) => (
-            <option key={index} value={group}>
+            <option key={index} value={group} className="inputOption">
               {group}
             </option>
           ))}
         </select>
-        <textarea
+
+        <TextField
+          label="Please enter recipe description"
+          multiline
+          variant="outlined"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit" onClick={submitClick}>
-          Click
+        <button type="submit" onClick={submitClick} className="submitCreate">
+          Create recipe
         </button>
       </form>
     </div>
