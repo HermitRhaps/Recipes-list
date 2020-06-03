@@ -1,0 +1,29 @@
+.filter_form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  .filter_select {
+    border: 1px solid rgba(141, 141, 141, 0.6);
+    border-radius: 5px 5px 5px 5px;
+    padding: 5% 10%;
+    cursor: pointer;
+  }
+  .filter_select_disabled {
+    border: 1px solid rgba(141, 141, 141, 0.6);
+    border-radius: 5px 5px 5px 5px;
+    padding: 6% 10%;
+  }
+  .filterSubmit {
+    border: 1px solid rgba(141, 141, 141, 0.6);
+    border-radius: 5px 5px 5px 5px;
+    padding: 22% 10%;
+    cursor: pointer;
+  }
+
+  .filter_select:hover,
+  .filterSubmit:hover {
+    border-color: red;
+    color: red;
+  }
+}

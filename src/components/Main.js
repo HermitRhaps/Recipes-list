@@ -1,28 +1,18 @@
-import React, { useState } from "react";
-import CreateRecipeForm from "./CreateRecipeForm";
-import RecipeList from "./Recipes-list";
-import { Navigation } from "./Navigation";
-import { Button } from "@material-ui/core";
+import React from "react";
+import RecipeList from "./RecipesList";
+import SideBarElements from "./SideBarElements";
+import "../styles/main.scss";
 export const Main = () => {
-  const [modalStatus, setModalStatus] = useState(false);
   return (
-    <div>
-      {!modalStatus ? (
-        <Button
-          onClick={() => setModalStatus(true)}
-          variant="outlined"
-          color="primary"
-        >
-          Open modal to create recipe
-        </Button>
-      ) : (
-        <Button variant="outlined" disabled>
-          Current modal is active
-        </Button>
-      )}
-      {modalStatus ? <CreateRecipeForm isOpen={setModalStatus} /> : null}
-      <Navigation />
-      <RecipeList />
-    </div>
+    <main>
+      <div className="main_comtainer">
+        <div className="main_side_item">
+          <SideBarElements />
+        </div>
+        <div className="main_item">
+          <RecipeList />
+        </div>
+      </div>
+    </main>
   );
 };

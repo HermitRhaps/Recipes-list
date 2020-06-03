@@ -1,0 +1,19 @@
+.sidebar_container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5% 25%;
+  height: 92vh;
+  overflow: auto;
+  .sidebar_button {
+    border: 1px solid rgba(141, 141, 141, 0.6);
+    border-radius: 5px 5px 5px 5px;
+    padding: 5% 2.5%;
+    margin-bottom: 2%;
+    cursor: pointer;
+  }
+  .sidebar_button:hover {
+    border-color: red;
+    color: red;
+  }
+}

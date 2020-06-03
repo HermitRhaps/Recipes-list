@@ -84,7 +84,7 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
           className="inputSelect"
           onChange={(e) => setRecipeGroup(e.target.value)}
         >
-          <option selected disabled>
+          <option defaultValue disabled>
             Select category
           </option>
           {state.categories.map((group, index) => (

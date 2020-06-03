@@ -1,9 +1,11 @@
 import React from "react";
 import { Main } from "./components/Main";
+import { Navigation } from "./components/Navigation";
 export const App = () => {
   return (
-    <div>
+    <body>
+      <Navigation />
       <Main />
-    </div>
+    </body>
   );
 };

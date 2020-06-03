@@ -1,0 +1,32 @@
+.navbar {
+  padding: 1%;
+  width: 100%;
+  box-shadow: -5px 5px 10px 0px rgba(0, 0, 0, 0.75);
+  background: white;
+  position: fixed;
+  z-index: 2;
+  .nav_container {
+    display: flex;
+    align-items: center;
+    .nav_item {
+      width: 20%;
+      .create_modal_button {
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding: 2.5% 10%;
+        cursor: pointer;
+      }
+      .create_modal_button_disabled {
+        padding: 2.5% 10%;
+        border-radius: 5px 5px 5px 5px;
+        color: white;
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        background: rgba(141, 141, 141, 0.6);
+      }
+      .create_modal_button:hover {
+        border-color: red;
+        color: red;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.main_comtainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 5% 0;
+  .main_side_item {
+    width: 25%;
+  }
+  .main_item {
+    width: 75%;
+  }
+}

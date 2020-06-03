@@ -33,7 +33,10 @@ export const recipeReducer = (state = initialState, action) => {
     case "FILTER_RECIPE":
       return {
         ...state,
-        recipes: state.recipes.filter((item) => item.group === action.category),
+        isUsedFilter: true,
+        filtered: state.recipes.filter(
+          (item) => item.group === action.category
+        ),
       };
     default:
       return state;
