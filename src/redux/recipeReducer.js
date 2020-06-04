@@ -2,6 +2,8 @@ import { initialState } from "./initialState";
 import update from "immutability-helper";
 export const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "LOAD_RECIPES":
+      return { ...state, recipes: action.recipe };
     case "CREATE_RECIPE":
       return {
         ...state,

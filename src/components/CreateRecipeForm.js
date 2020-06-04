@@ -29,7 +29,6 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
       description.trim()
     ) {
       dispatch(createRecipe(title, image, recipeGroup, description));
-      console.log(state);
     }
   }
   function submitImage(e) {

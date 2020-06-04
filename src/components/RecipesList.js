@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Recipe from "./Recipe";
 import "../styles/recipeList.scss";
 import Grid from "@material-ui/core/Grid";
 const RecipeList = ({ state, dispatch }) => {
+  useEffect(() => {
+    console.log(state);
+  });
   return (
     <div className="recipes_list_container">
       <div className="recipes_list_items">

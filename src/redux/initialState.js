@@ -3,4 +3,5 @@ export const initialState = {
   recipes: [],
   isUsedFilter: false,
   filtered: [],
+  test: [],
 };
