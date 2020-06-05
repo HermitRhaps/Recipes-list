@@ -39,12 +39,14 @@ const Recipe = ({ index, item, dispatch }) => {
       <CardActions>
         <button
           value={index}
+          className="recipe_button"
           onClick={(e) => setIndex(e.target.value) || setEditRecupeModal(true)}
         >
           Edit
         </button>
         <button
           value={index}
+          className="recipe_button"
           onClick={(e) => dispatch(deleteRecipe(e.target.value))}
         >
           Delete

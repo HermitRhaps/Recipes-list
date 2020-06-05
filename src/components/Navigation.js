@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import CreateRecipeForm from "./CreateRecipeForm";
 import Filter from "./Filter";
-
 import "../styles/navigation.scss";
 export const Navigation = () => {
   const [modalStatus, setModalStatus] = useState(false);

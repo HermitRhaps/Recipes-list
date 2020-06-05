@@ -6,7 +6,9 @@ import { fetchRecipes } from "./redux/actions/fetchRecipes";
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchRecipes());
+    if (localStorage.getItem("recipes")) {
+      dispatch(fetchRecipes());
+    }
   });
   return (
     <div>

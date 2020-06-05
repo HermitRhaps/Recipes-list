@@ -63,12 +63,13 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
             setTitle(e.target.value);
           }}
         />
-        <TextField
+        <input
           type="file"
           name="file"
           id="file"
           className="inputFile"
           onChange={(e) => submitImage(e)}
+          accept="image/*"
         />
         {!image ? (
           <label htmlFor="file" className="inputFileLabel" variant="outlined">

@@ -1,11 +1,16 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { filterRecipe } from "../redux/actions/filterRecipe";
+import { resetFilter } from "../redux/actions/resetFilter";
 import "../styles/filter.scss";
 const Filter = ({ state, dispatch }) => {
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(resetFilter());
+  }
   return (
     <Fragment>
-      <form className="filter_form">
+      <form className="filter_form" onSubmit={handleSubmit}>
         <div className="filter_from_item">
           {state.recipes.length !== 0 ? (
             <select

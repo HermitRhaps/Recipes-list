@@ -2,7 +2,6 @@ import { takeEvery, put, select, call } from "redux-saga/effects";
 
 export const getRecepies = (state) => state.recipeReducer.recipes;
 
-// eslint-disable-next-line require-yield
 function* loadLocalStorage() {
   yield put({
     type: "LOAD_RECIPES",
@@ -16,7 +15,6 @@ function* saveLocalStorage() {
   yield call(function () {
     localStorage.setItem("recipes", JSON.stringify(repipes));
   });
-  console.log(repipes);
 }
 
 export function* sagaWatcher() {

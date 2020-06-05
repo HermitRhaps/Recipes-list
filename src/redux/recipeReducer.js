@@ -3,20 +3,20 @@ import update from "immutability-helper";
 export const recipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_RECIPES":
-      return { ...state, recipes: action.recipe };
+      return update(state, { $merge: { recipes: action.recipe } });
     case "CREATE_RECIPE":
-      return {
-        ...state,
-        recipes: [
-          ...state.recipes,
-          {
-            text: action.text,
-            image: action.image,
-            group: action.group,
-            description: action.description,
-          },
-        ],
-      };
+      return update(state, {
+        recipes: {
+          $push: [
+            {
+              text: action.text,
+              image: action.image,
+              group: action.group,
+              description: action.description,
+            },
+          ],
+        },
+      });
     case "EDIT_RECIPE":
       return update(state, {
         recipes: {
@@ -33,13 +33,17 @@ export const recipeReducer = (state = initialState, action) => {
         recipes: { $splice: [[action.id, 1]] },
       });
     case "FILTER_RECIPE":
-      return {
-        ...state,
-        isUsedFilter: true,
-        filtered: state.recipes.filter(
-          (item) => item.group === action.category
-        ),
-      };
+      return update(state, {
+        isUsedFilter: { $set: true },
+        filtered: {
+          $set: state.recipes.filter((item) => item.group === action.category),
+        },
+      });
+    case "RESET_FILTER_RECIPE":
+      return update(state, {
+        isUsedFilter: { $set: false },
+        filtered: { $set: [] },
+      });
     default:
       return state;
   }

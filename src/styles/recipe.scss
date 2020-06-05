@@ -1,0 +1,11 @@
+.recipe_button {
+  width: 25%;
+  border: 1px solid rgba(141, 141, 141, 0.6);
+  border-radius: 5px 5px 5px 5px;
+  padding: 5% 2.5%;
+  cursor: pointer;
+}
+.recipe_button:hover {
+  border-color: red;
+  color: red;
+}
