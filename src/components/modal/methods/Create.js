@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
-import { createRecipe } from "../redux/actions/createRecipe";
-import "../styles/createRecipeForm.scss";
-import { TextField, Button } from "@material-ui/core";
+import { createRecipe } from "../../../redux/actions/createRecipe";
+import "../../../styles/modal.scss";
+import { TextField } from "@material-ui/core";
 
-const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
+const Create = ({ dispatch, state, status }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [recipeGroup, setRecipeGroup] = useState("");
@@ -13,16 +13,6 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
   function submitForm(e) {
     e.preventDefault();
     if (
-      !title.trim() &&
-      !image.trim() &&
-      !recipeGroup.trim() &&
-      !description.trim()
-    ) {
-      setTitle("") && setImage("") && setRecipeGroup("") && setDescription("");
-    }
-  }
-  function submitClick(e) {
-    if (
       title.trim() &&
       image.trim() &&
       recipeGroup.trim() &&
@@ -30,7 +20,9 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
     ) {
       dispatch(createRecipe(title, image, recipeGroup, description));
     }
+    status(false);
   }
+
   function submitImage(e) {
     e.preventDefault();
     const fileReader = new FileReader();
@@ -40,13 +32,7 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
     fileReader.readAsDataURL(e.target.files[0]);
   }
   return (
-    <div className="modal_container">
-      <div className="modal_header">
-        <h2 className="modal_title">Create form</h2>
-        <Button className="modal_close" onClick={() => isOpen(false)}>
-          Close
-        </Button>
-      </div>
+    <Fragment>
       <form
         onSubmit={submitForm}
         className="modal_form"
@@ -101,15 +87,15 @@ const CreateRecipeForm = ({ dispatch, state, isOpen }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit" onClick={submitClick} className="submitCreate">
+        <button type="submit" className="submitCreate">
           Create recipe
         </button>
       </form>
-    </div>
+    </Fragment>
   );
 };
 
 const mapStateToProps = (state) => ({
   state: state.recipeReducer,
 });
-export default connect(mapStateToProps, null)(CreateRecipeForm);
+export default connect(mapStateToProps, null)(Create);

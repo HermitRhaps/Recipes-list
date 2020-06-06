@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CreateRecipeForm from "./CreateRecipeForm";
 import Filter from "./Filter";
+import { Modal } from "./modal/Modal";
 import "../styles/navigation.scss";
 export const Navigation = () => {
   const [modalStatus, setModalStatus] = useState(false);
@@ -25,7 +25,7 @@ export const Navigation = () => {
           <Filter />
         </div>
       </nav>
-      {modalStatus ? <CreateRecipeForm isOpen={setModalStatus} /> : null}
+      {modalStatus ? <Modal isOpen={setModalStatus} type="Create" /> : null}
     </section>
   );
 };
