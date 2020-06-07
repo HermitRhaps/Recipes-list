@@ -87,7 +87,7 @@ const Create = ({ dispatch, state, status }) => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit" className="submitCreate">
+        <button type="submit" className="modal_button">
           Create recipe
         </button>
       </form>

@@ -72,7 +72,7 @@ const Edit = ({ state, dispatch, id, status }) => {
           value={newDescription}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit" className="submitCreate">
+        <button type="submit" className="modal_button">
           Edit recipe
         </button>
       </form>

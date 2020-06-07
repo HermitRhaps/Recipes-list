@@ -1,10 +1,16 @@
 import { takeEvery, put, select, call } from "redux-saga/effects";
-
+import {
+  FETCH_RECIPES,
+  LOAD_RECIPES,
+  CREATE_RECIPE,
+  EDIT_RECIPE,
+  DELETE_RECIPE,
+} from "../types/types";
 export const getRecepies = (state) => state.recipeReducer.recipes;
 
 function* loadLocalStorage() {
   yield put({
-    type: "LOAD_RECIPES",
+    type: LOAD_RECIPES,
     recipe: JSON.parse(localStorage.getItem("recipes")),
   });
 }
@@ -18,8 +24,8 @@ function* saveLocalStorage() {
 }
 
 export function* sagaWatcher() {
-  yield takeEvery("FETCH_RECIPES", loadLocalStorage);
-  yield takeEvery("CREATE_RECIPE", saveLocalStorage);
-  yield takeEvery("EDIT_RECIPE", saveLocalStorage);
-  yield takeEvery("DELETE_RECIPE", saveLocalStorage);
+  yield takeEvery(FETCH_RECIPES, loadLocalStorage);
+  yield takeEvery(CREATE_RECIPE, saveLocalStorage);
+  yield takeEvery(EDIT_RECIPE, saveLocalStorage);
+  yield takeEvery(DELETE_RECIPE, saveLocalStorage);
 }

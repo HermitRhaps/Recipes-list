@@ -17,7 +17,8 @@ import { Modal } from "./modal/Modal";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 300,
+    margin: "1%",
   },
 });
 const Recipe = ({ index, item, dispatch }) => {

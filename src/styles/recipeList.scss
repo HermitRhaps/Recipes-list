@@ -1,6 +1,6 @@
 .recipes_list_container {
-  padding: 1.6% 6%;
-  height: 92vh;
+  padding: 1.6% 5%;
+  // height: 90vh;
   overflow: auto;
   display: flex;
   flex-direction: row;
@@ -8,9 +8,5 @@
     display: flex;
     width: 100%;
     flex-direction: row;
-    margin-bottom: 5%;
-    .recipe {
-      margin-bottom: 2%;
-    }
   }
 }
