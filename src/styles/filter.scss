@@ -1,8 +1,8 @@
-* {
-  box-sizing: border-box;
-}
 .filter_items {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
   .filter_select_container {
     margin-left: 2%;
     .filter_select {
@@ -19,11 +19,10 @@
     }
   }
   .filter_button_container {
-    margin-left: 2%;
     .filterSubmit {
       border: 1px solid rgba(141, 141, 141, 0.6);
       border-radius: 5px 5px 5px 5px;
-      padding: 17% 10%;
+      padding: 20% 10%;
       cursor: pointer;
     }
   }

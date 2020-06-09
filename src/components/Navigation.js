@@ -6,17 +6,14 @@ export const Navigation = () => {
   const [modalStatus, setModalStatus] = useState(false);
 
   const handleModalStatus = (e) => {
-    setModalStatus(true)
-  }
+    setModalStatus(true);
+  };
   return (
     <section className="navbar">
       <nav className="nav_container">
-        <div className="nav_item">
+        <div className="nav_create">
           {!modalStatus ? (
-            <button
-              onClick={handleModalStatus}
-              className="create_modal_button"
-            >
+            <button onClick={handleModalStatus} className="create_modal_button">
               Open modal to create recipe
             </button>
           ) : (
@@ -25,7 +22,7 @@ export const Navigation = () => {
             </button>
           )}
         </div>
-        <div className="nav_item">
+        <div className="nav_filter">
           <Filter />
         </div>
       </nav>

@@ -1,5 +1,5 @@
 .navbar {
-  padding: 1%;
+  padding: 1% 2%;
   box-shadow: -5px 5px 10px 0px rgba(0, 0, 0, 0.75);
   background: white;
   position: relative;
@@ -7,7 +7,7 @@
   .nav_container {
     display: flex;
     flex-direction: row;
-    .nav_item {
+    .nav_create {
       width: 25%;
       .create_modal_button {
         border: 1px solid rgba(141, 141, 141, 0.6);
@@ -26,6 +26,9 @@
         border-color: red;
         color: red;
       }
+    }
+    .nav_filter {
+      width: 75%;
     }
   }
 }
