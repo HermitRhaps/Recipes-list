@@ -4,13 +4,17 @@ import { Modal } from "./modal/Modal";
 import "../styles/navigation.scss";
 export const Navigation = () => {
   const [modalStatus, setModalStatus] = useState(false);
+
+  const handleModalStatus = (e) => {
+    setModalStatus(true)
+  }
   return (
     <section className="navbar">
       <nav className="nav_container">
         <div className="nav_item">
           {!modalStatus ? (
             <button
-              onClick={() => setModalStatus(true)}
+              onClick={handleModalStatus}
               className="create_modal_button"
             >
               Open modal to create recipe

@@ -9,7 +9,7 @@ export const App = () => {
     if (localStorage.getItem("recipes")) {
       dispatch(fetchRecipes());
     }
-  });
+  }, []);
   return (
     <div>
       <Navigation />

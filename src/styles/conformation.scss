@@ -1,0 +1,24 @@
+.confirmation_container {
+  padding: 2%;
+  .confirmation_header {
+    text-align: center;
+    margin-bottom: 5%;
+  }
+  .confirmation_items {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    .confirmation_item {
+      width: 50%;
+      .confirmation_button {
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding: 5% 10%;
+        cursor: pointer;
+      }
+      .confirmation_button:hover {
+        border: 1px solid black;
+      }
+    }
+  }
+}

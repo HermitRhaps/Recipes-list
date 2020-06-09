@@ -1,28 +1,43 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { createRecipe } from "../../../redux/actions/createRecipe";
+import { editRecipe } from "../../../redux/actions/editRecipe";
 import "../../../styles/modal.scss";
 import { TextField } from "@material-ui/core";
 
-const Create = ({ dispatch, state, status }) => {
+const CreateOrEdit = ({ dispatch, id, state, status }) => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [recipeGroup, setRecipeGroup] = useState("");
   const [description, setDescription] = useState("");
+  useEffect(() => {
+    if (id) {
+      setTitle(state.recipes[id].text);
+      setImage(state.recipes[id].image);
+      setRecipeGroup(state.recipes[id].group);
+      setDescription(state.recipes[id].description);
+    }
+  }, []);
 
   function submitForm(e) {
     e.preventDefault();
-    if (
-      title.trim() &&
-      image.trim() &&
-      recipeGroup.trim() &&
-      description.trim()
-    ) {
-      dispatch(createRecipe(title, image, recipeGroup, description));
+    if (id) {
+      dispatch(editRecipe(id, title, image, recipeGroup, description));
+    } else {
+      if (
+        title.trim() &&
+        image.trim() &&
+        recipeGroup.trim() &&
+        description.trim()
+      ) {
+        dispatch(createRecipe(title, image, recipeGroup, description));
+      }
     }
     status(false);
   }
-
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
   function submitImage(e) {
     e.preventDefault();
     const fileReader = new FileReader();
@@ -31,6 +46,12 @@ const Create = ({ dispatch, state, status }) => {
     };
     fileReader.readAsDataURL(e.target.files[0]);
   }
+  const handleGroupChange = (e) => {
+    setRecipeGroup(e.target.value);
+  };
+  const handleDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
   return (
     <Fragment>
       <form
@@ -44,17 +65,16 @@ const Create = ({ dispatch, state, status }) => {
           label="Recipe title"
           variant="outlined"
           className="titleInput"
+          data-mydatafield="asdasdasdaad"
           value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
+          onChange={handleTitleChange}
         />
         <input
           type="file"
           name="file"
           id="file"
           className="inputFile"
-          onChange={(e) => submitImage(e)}
+          onChange={submitImage}
           accept="image/*"
         />
         {!image ? (
@@ -68,10 +88,11 @@ const Create = ({ dispatch, state, status }) => {
         )}
         <select
           className="inputSelect"
-          onChange={(e) => setRecipeGroup(e.target.value)}
+          defaultValue={id ? recipeGroup : "Select recipe category"}
+          onChange={handleGroupChange}
         >
           <option defaultValue disabled>
-            Select category
+            {id ? recipeGroup : "Select recipe category"}
           </option>
           {state.categories.map((group, index) => (
             <option key={index} value={group} className="inputOption">
@@ -85,11 +106,17 @@ const Create = ({ dispatch, state, status }) => {
           multiline
           variant="outlined"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={handleDescriptionChange}
         />
-        <button type="submit" className="modal_button">
-          Create recipe
-        </button>
+        {id ? (
+          <button type="submit" className="modal_button">
+            Edit recipe
+          </button>
+        ) : (
+          <button type="submit" className="modal_button">
+            Create recipe
+          </button>
+        )}
       </form>
     </Fragment>
   );
@@ -98,4 +125,4 @@ const Create = ({ dispatch, state, status }) => {
 const mapStateToProps = (state) => ({
   state: state.recipeReducer,
 });
-export default connect(mapStateToProps, null)(Create);
+export default connect(mapStateToProps, null)(CreateOrEdit);

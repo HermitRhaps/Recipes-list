@@ -16,12 +16,7 @@ export const recipeReducer = (state = initialState, action) => {
       return update(state, {
         recipes: {
           $push: [
-            {
-              text: action.text,
-              image: action.image,
-              group: action.group,
-              description: action.description,
-            },
+            action.payload
           ],
         },
       });

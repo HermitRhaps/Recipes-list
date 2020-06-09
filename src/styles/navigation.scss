@@ -1,19 +1,18 @@
 .navbar {
   padding: 1%;
-  width: 100%;
   box-shadow: -5px 5px 10px 0px rgba(0, 0, 0, 0.75);
   background: white;
   position: relative;
   z-index: 2;
   .nav_container {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     .nav_item {
-      width: 20%;
+      width: 25%;
       .create_modal_button {
         border: 1px solid rgba(141, 141, 141, 0.6);
         border-radius: 5px 5px 5px 5px;
-        padding: 2.5% 10%;
+        padding: 2.5% 5%;
         cursor: pointer;
       }
       .create_modal_button_disabled {

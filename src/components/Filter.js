@@ -4,18 +4,23 @@ import { filterRecipe } from "../redux/actions/filterRecipe";
 import { resetFilter } from "../redux/actions/resetFilter";
 import "../styles/filter.scss";
 const Filter = ({ state, dispatch }) => {
-  function handleSubmit(e) {
+  const handleFilterCategoryChange = (e) => {
+    dispatch(filterRecipe(e.target.value));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(resetFilter());
-  }
+  };
+
   return (
     <Fragment>
-      <form className="filter_form" onSubmit={handleSubmit}>
-        <div className="filter_from_item">
+      <div className="filter_items">
+        <div className="filter_select_container">
           {state.recipes.length !== 0 ? (
             <select
               className="filter_select"
-              onChange={(e) => dispatch(filterRecipe(e.target.value))}
+              onChange={handleFilterCategoryChange}
               defaultValue="Select category filter"
             >
               <option defaultValue disabled>
@@ -37,12 +42,12 @@ const Filter = ({ state, dispatch }) => {
             </select>
           )}
         </div>
-        <div className="filter_from_item">
-          <button type="submit" className="filterSubmit">
+        <div className="filter_button_container">
+          <button type="submit" className="filterSubmit" onClick={handleSubmit}>
             Reset
           </button>
         </div>
-      </form>
+      </div>
     </Fragment>
   );
 };

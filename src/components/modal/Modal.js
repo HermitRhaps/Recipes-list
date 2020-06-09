@@ -1,19 +1,22 @@
 import React from "react";
 import "../../styles/modal.scss";
-import Create from "./methods/Create";
-import Edit from "./methods/Edit";
-export const Modal = ({ isOpen, id, type }) => {
+import CreateOrEdit from "./methods/CreateOrEdit";
+import { Conformation } from "./methods/Conformation";
+export const Modal = ({ isOpen, id, type, recipeRemove }) => {
+  const handleModalStatus = () => {
+    isOpen(false);
+  };
   return (
     <div className="modal_container">
       <div className="modal_header">
-        <button className="modal_close" onClick={() => isOpen(false)}>
+        <button className="modal_close" onClick={handleModalStatus}>
           Close
         </button>
       </div>
-      {type === "Create" ? (
-        <Create status={isOpen} />
+      {type === "Delete" ? (
+        <Conformation status={isOpen} remove={recipeRemove} />
       ) : (
-        <Edit id={id} status={isOpen} />
+        <CreateOrEdit status={isOpen} id={id} />
       )}
     </div>
   );

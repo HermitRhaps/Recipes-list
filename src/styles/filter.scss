@@ -1,24 +1,31 @@
-.filter_form {
+* {
+  box-sizing: border-box;
+}
+.filter_items {
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-  .filter_select {
-    border: 1px solid rgba(141, 141, 141, 0.6);
-    border-radius: 5px 5px 5px 5px;
-    padding: 5% 10%;
-    cursor: pointer;
+  .filter_select_container {
+    margin-left: 2%;
+    .filter_select {
+      border: 1px solid rgba(141, 141, 141, 0.6);
+      border-radius: 5px 5px 5px 5px;
+      padding: 5% 10%;
+      word-wrap: break-word;
+      cursor: pointer;
+    }
+    .filter_select_disabled {
+      padding: 5% 10%;
+      border: 1px solid rgba(141, 141, 141, 0.6);
+      border-radius: 5px 5px 5px 5px;
+    }
   }
-  .filter_select_disabled {
-    border: 1px solid rgba(141, 141, 141, 0.6);
-    border-radius: 5px 5px 5px 5px;
-    padding: 6% 10%;
-  }
-  .filterSubmit {
-    border: 1px solid rgba(141, 141, 141, 0.6);
-    border-radius: 5px 5px 5px 5px;
-    padding: 22% 10%;
-    cursor: pointer;
+  .filter_button_container {
+    margin-left: 2%;
+    .filterSubmit {
+      border: 1px solid rgba(141, 141, 141, 0.6);
+      border-radius: 5px 5px 5px 5px;
+      padding: 17% 10%;
+      cursor: pointer;
+    }
   }
 
   .filter_select:hover,
