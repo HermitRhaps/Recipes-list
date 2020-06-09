@@ -1,35 +1,71 @@
-.filter_items {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  .filter_select_container {
-    margin-left: 2%;
-    .filter_select {
-      border: 1px solid rgba(141, 141, 141, 0.6);
-      border-radius: 5px 5px 5px 5px;
-      padding: 5% 10%;
-      word-wrap: break-word;
-      cursor: pointer;
-    }
-    .filter_select_disabled {
-      padding: 5% 10%;
-      border: 1px solid rgba(141, 141, 141, 0.6);
-      border-radius: 5px 5px 5px 5px;
-    }
-  }
-  .filter_button_container {
-    .filterSubmit {
-      border: 1px solid rgba(141, 141, 141, 0.6);
-      border-radius: 5px 5px 5px 5px;
-      padding: 20% 10%;
-      cursor: pointer;
-    }
-  }
+.filter_container {
+  .filter_items {
+    display: flex;
+    .filter_form {
+      display: flex;
+      .filter_select {
+        margin-right: 3%;
+        max-width: 100%;
+        min-height: 55px;
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding: 0% 5%;
+        cursor: pointer;
+      }
+      .filter_select_disabled {
+        padding: 0% 5%;
 
-  .filter_select:hover,
-  .filterSubmit:hover {
-    border-color: red;
-    color: red;
+        margin-right: 3%;
+        max-width: 100%;
+        min-height: 55px;
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        border-radius: 5px 5px 5px 5px;
+      }
+      .filterSubmit {
+        margin-left: 10%;
+        min-height: 55px;
+        order: 2;
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding: 0% 5%;
+        cursor: pointer;
+      }
+      .filter_select:hover,
+      .filterSubmit:hover {
+        border-color: red;
+        color: red;
+      }
+      .filter_button_container {
+        .filterSubmit {
+          min-height: 55px;
+          order: 2;
+          border: 1px solid rgba(141, 141, 141, 0.6);
+          border-radius: 5px 5px 5px 5px;
+          padding: 0% 15%;
+          cursor: pointer;
+        }
+        .filter_select:hover,
+        .filterSubmit:hover {
+          border-color: red;
+          color: red;
+        }
+      }
+    }
+    .reset_button_container {
+      margin-left: 5%;
+      .filterSubmit {
+        min-height: 55px;
+        order: 2;
+        border: 1px solid rgba(141, 141, 141, 0.6);
+        border-radius: 5px 5px 5px 5px;
+        padding: 0% 10%;
+        cursor: pointer;
+      }
+      .filter_select:hover,
+      .filterSubmit:hover {
+        border-color: red;
+        color: red;
+      }
+    }
   }
 }

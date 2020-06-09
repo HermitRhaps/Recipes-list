@@ -3,6 +3,7 @@ import "../../../styles/conformation.scss";
 export const Conformation = ({ status, remove }) => {
   const handleRemove = () => {
     remove();
+    status(false);
   };
   const handleClose = () => {
     status(false);

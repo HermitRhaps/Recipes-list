@@ -10,7 +10,7 @@ export const Navigation = () => {
   };
   return (
     <section className="navbar">
-      <nav className="nav_container">
+      <div className="nav_container">
         <div className="nav_create">
           {!modalStatus ? (
             <button onClick={handleModalStatus} className="create_modal_button">
@@ -25,7 +25,7 @@ export const Navigation = () => {
         <div className="nav_filter">
           <Filter />
         </div>
-      </nav>
+      </div>
       {modalStatus ? <Modal isOpen={setModalStatus} type="Create" /> : null}
     </section>
   );
