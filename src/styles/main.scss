@@ -3,11 +3,12 @@
   flex-direction: row;
   max-width: 100%;
   background: #e7e5e5;
-  // height: 90vh;
+  height: 100vh;
+  overflow: hidden;
   .main_side_item {
-    width: 25%;
+    width: 20%;
   }
   .main_item {
-    width: 75%;
+    width: 80%;
   }
 }

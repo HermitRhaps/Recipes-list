@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { createRecipe } from "../../../redux/actions/createRecipe";
 import { editRecipe } from "../../../redux/actions/editRecipe";
 import "../../../styles/modal.scss";
+import Default from "../../../styles/default/default_image.jpg";
 import { TextField } from "@material-ui/core";
 
 const CreateOrEdit = ({ dispatch, id, state, status }) => {
@@ -24,12 +25,7 @@ const CreateOrEdit = ({ dispatch, id, state, status }) => {
     if (id) {
       dispatch(editRecipe(id, title, image, recipeGroup, description));
     } else {
-      if (
-        title.trim() &&
-        image.trim() &&
-        recipeGroup.trim() &&
-        description.trim()
-      ) {
+      if (title.trim() && recipeGroup.trim() && description.trim()) {
         dispatch(createRecipe(title, image, recipeGroup, description));
       }
     }

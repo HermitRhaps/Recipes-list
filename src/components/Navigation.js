@@ -1,32 +1,14 @@
-import React, { useState } from "react";
-import Filter from "./Filter";
-import { Modal } from "./modal/Modal";
+import React from "react";
 import "../styles/navigation.scss";
+import Logo from "../styles/default/logo.jpg";
 export const Navigation = () => {
-  const [modalStatus, setModalStatus] = useState(false);
-
-  const handleModalStatus = (e) => {
-    setModalStatus(true);
-  };
   return (
-    <section className="navbar">
-      <div className="nav_container">
-        <div className="nav_create">
-          {!modalStatus ? (
-            <button onClick={handleModalStatus} className="create_modal_button">
-              Open modal to create recipe
-            </button>
-          ) : (
-            <button className="create_modal_button_disabled" disabled>
-              Current modal is active
-            </button>
-          )}
-        </div>
-        <div className="nav_filter">
-          <Filter />
-        </div>
+    <div className="navbar">
+      <div className="logo">
+        <a href="https://github.com/HermitRhaps">
+          <img src={Logo} alt="Project title" className="logo_image" />
+        </a>
       </div>
-      {modalStatus ? <Modal isOpen={setModalStatus} type="Create" /> : null}
-    </section>
+    </div>
   );
 };

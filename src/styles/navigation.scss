@@ -1,35 +1,26 @@
 .navbar {
-  padding: 1% 2%;
+  width: 25%;
+  height: auto;
+  padding: 0.1% 1%;
   box-shadow: -5px 5px 10px 0px rgba(0, 0, 0, 0.75);
   background: white;
-  position: relative;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 2;
-  .nav_container {
-    padding: 1% 2%;
+  overflow: hidden;
+  text-align: center;
+
+  .logo {
     display: flex;
     align-items: center;
-    .nav_create {
-      margin-right: 5%;
-      .create_modal_button {
-        border: 1px solid rgba(141, 141, 141, 0.6);
-        border-radius: 5px 5px 5px 5px;
-        padding: 2.5% 5%;
-        cursor: pointer;
-      }
-      .create_modal_button_disabled {
-        padding: 2.5% 10%;
-        border-radius: 5px 5px 5px 5px;
-        color: white;
-        border: 1px solid rgba(141, 141, 141, 0.6);
-        background: rgba(141, 141, 141, 0.6);
-      }
-      .create_modal_button:hover {
-        border-color: red;
-        color: red;
-      }
-    }
-    .nav_filter {
-      width: 75%;
+    justify-content: center;
+    .logo_image {
+      height: auto;
+      width: 15%;
+      object-fit: contain;
+      cursor: pointer;
     }
   }
 }

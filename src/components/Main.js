@@ -1,6 +1,6 @@
 import React from "react";
 import RecipeList from "./RecipesList";
-import SideBarElements from "./SideBarElements";
+import SideBarElements from "./Sidebar";
 import "../styles/main.scss";
 export const Main = () => {
   return (

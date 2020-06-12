@@ -9,8 +9,8 @@
 
 .modal_container {
   position: fixed;
-  top: 25%;
-  left: 35%;
+  left: calc(50vw - 18%);
+  top: calc(50vh - 25%);
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.75);
   width: 35%;
   padding: 2%;

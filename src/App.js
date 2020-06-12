@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Main } from "./components/Main";
-import { Navigation } from "./components/Navigation";
 import { useDispatch } from "react-redux";
 import { fetchRecipes } from "./redux/actions/fetchRecipes";
 export const App = () => {
@@ -12,7 +11,6 @@ export const App = () => {
   }, []);
   return (
     <div>
-      <Navigation />
       <Main />
     </div>
   );
