@@ -6,7 +6,10 @@
   color: gray;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+*::placeholder {
+  font-size: 1.05rem;
+  font-weight: bold;
+}
 .modal_container {
   position: fixed;
   left: calc(50vw - 18%);
@@ -19,14 +22,14 @@
   .modal_header {
     text-align: end;
     .modal_close {
-      border: 1px solid rgba(141, 141, 141, 0.6);
+      border: 1px solid rgb(0, 0, 0);
       border-radius: 5px 5px 5px 5px;
       padding: 2% 2.5%;
       word-wrap: break-word;
       cursor: pointer;
     }
     .modal_close:hover {
-      border: 1px solid black;
+      border: 1px solid red;
     }
   }
   .modal_form {
@@ -34,6 +37,11 @@
     flex-direction: column;
     width: 50%;
     margin: auto;
+    .error {
+      border: 1px solid red;
+      border-radius: 5px 5px 5px 5px;
+      margin-bottom: 3%;
+    }
     .titleInput {
       margin-bottom: 3%;
     }
@@ -54,6 +62,16 @@
       padding: 5% 4%;
       margin-bottom: 3%;
       overflow: hidden;
+      font-weight: lighter;
+    }
+    .errorLabel {
+      border: 1px solid red;
+      border-radius: 5px 5px 5px 5px;
+      display: inline-block;
+      padding: 5% 4%;
+      margin-bottom: 3%;
+      overflow: hidden;
+      font-weight: lighter;
     }
     .inputFileLabel:hover {
       color: black;
@@ -64,6 +82,16 @@
       border-radius: 5px 5px 5px 5px;
       padding: 5% 2.5%;
       margin-bottom: 3%;
+      cursor: pointer;
+    }
+    .errorSelect {
+      border: 1px solid red;
+      border-radius: 5px 5px 5px 5px;
+      padding: 5% 2.5%;
+      margin-bottom: 3%;
+    }
+    .inputSelect:hover {
+      border: 1px solid black;
     }
     .inputOption {
       padding: 5% 2.5%;
@@ -72,15 +100,20 @@
     .inputDescription {
       margin-bottom: 5%;
     }
+    .errorDescription {
+      border: 1px solid red;
+      border-radius: 5px 5px 5px 5px;
+      max-height: 200px;
+    }
     .modal_button {
       margin-top: 3%;
-      border: 1px solid rgba(141, 141, 141, 0.6);
+      border: 1px solid rgb(0, 0, 0);
       border-radius: 5px 5px 5px 5px;
       padding: 5% 2.5%;
       cursor: pointer;
     }
     .modal_button:hover {
-      border: 1px solid black;
+      border: 1px solid red;
     }
   }
 }

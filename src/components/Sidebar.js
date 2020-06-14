@@ -2,12 +2,33 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { Modal } from "./modal/Modal";
 import Filter from "./Filter";
-import "../styles/sidebar.scss";
+import "../styles/sideBar.scss";
 import Logo from "../styles/default/logo.jpg";
 const Sidebar = ({ state, dispatch }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleModalStatusChange = () => {
-    setModalOpen(true);
+  const [modalType, setModalType] = useState("");
+  const [index, setIndex] = useState();
+  const handleModalStatusChange = (e) => {
+    switch (e.target.attributes.getNamedItem("data-type").value) {
+      case "Show":
+        setModalType(e.target.attributes.getNamedItem("data-type").value);
+        setIndex(e.target.value);
+        break;
+      default:
+        setModalType(e.target.attributes.getNamedItem("data-type").value);
+    }
+  };
+  const handleClose = () => {
+    setModalType("");
+  };
+  const handleTypeModal = (modalType) => {
+    switch (modalType) {
+      case "Operation":
+        return <Modal isOpen={handleClose} type="Operation" />;
+      case "Show":
+        return <Modal isOpen={handleClose} type="Show" id={index} />;
+      default:
+        return null;
+    }
   };
   return (
     <Fragment>
@@ -15,14 +36,16 @@ const Sidebar = ({ state, dispatch }) => {
         <div className="sidebar_logo">
           <a href="https://github.com/HermitRhaps">
             <img src={Logo} alt="Project title" className="logo_image" />
+            <p>Made by HermitRhaps</p>
           </a>
         </div>
         <div className="sidebar_control">
           <div className="modal_control">
-            {!modalOpen ? (
+            {!modalType ? (
               <button
                 onClick={handleModalStatusChange}
                 className="sidebar_modal_button"
+                data-type="Operation"
               >
                 Create recipe
               </button>
@@ -36,13 +59,19 @@ const Sidebar = ({ state, dispatch }) => {
         </div>
         <div className="sidebar_recipes">
           {state.recipes.map((item, index) => (
-            <button key={index} className="sidebar_button">
+            <button
+              key={index}
+              className="sidebar_button"
+              data-type="Show"
+              onClick={handleModalStatusChange}
+              value={index}
+            >
               {item.text}
             </button>
           ))}
         </div>
       </div>
-      {modalOpen ? <Modal isOpen={setModalOpen} type="Create" /> : null}
+      {handleTypeModal(modalType)}
     </Fragment>
   );
 };

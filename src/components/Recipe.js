@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/recipe.scss";
 import {
-  TextField,
   Card,
   CardActionArea,
   CardActions,
@@ -16,7 +15,9 @@ import { deleteRecipe } from "../redux/actions/deleteRecipe";
 const useStyles = makeStyles({
   root: {
     maxWidth: 300,
+    maxHeight: 355,
     margin: "1%",
+    background: "#e7e5e5",
   },
 });
 const Recipe = ({ index, item, dispatch }) => {
@@ -24,7 +25,6 @@ const Recipe = ({ index, item, dispatch }) => {
   const [editIndex, setIndex] = useState();
   const [modalStatus, setModalStatus] = useState(false);
   const [modalType, setModalType] = useState("");
-  const [deleteCompfirm, setDeleteCompfirm] = useState(false);
   const handlerecipemodals = (e) => {
     setModalType(e.target.attributes.getNamedItem("data-type").value);
     setIndex(e.target.value);
@@ -35,7 +35,7 @@ const Recipe = ({ index, item, dispatch }) => {
   };
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea disabled>
         <CardMedia component="img" alt="" height="140" image={item.image} />
         <CardContent>
           <Typography gutterBottom variant="h3">
@@ -44,13 +44,20 @@ const Recipe = ({ index, item, dispatch }) => {
           <Typography gutterBottom variant="h5">
             {item.group}
           </Typography>
-          <TextField disabled multiline value={item.description} />
         </CardContent>
       </CardActionArea>
       <CardActions>
         <button
+          onClick={handlerecipemodals}
+          data-type="Show"
           value={index}
-          data-type="Edit"
+          className="recipe_button"
+        >
+          More
+        </button>
+        <button
+          value={index}
+          data-type="Operation"
           className="recipe_button"
           onClick={handlerecipemodals}
         >
@@ -69,6 +76,7 @@ const Recipe = ({ index, item, dispatch }) => {
             isOpen={setModalStatus}
             id={editIndex}
             type={modalType}
+            item={item}
             recipeRemove={handleRecipeDelete}
           />
         ) : null}

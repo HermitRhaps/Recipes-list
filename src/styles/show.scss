@@ -1,0 +1,28 @@
+.recipe_card {
+  overflow: auto;
+  max-height: 500px;
+  // padding: 5%;
+  .recipe_row {
+    display: flex;
+    flex-direction: row;
+    .recipe_img_container {
+      width: 45%;
+      .recipe_img {
+        height: auto;
+        max-width: 95%;
+        object-fit: contain;
+        cursor: pointer;
+      }
+    }
+    .recipe_body {
+      width: 55%;
+    }
+    .recipe_description_container {
+      width: 100%;
+      .recipe_description {
+        width: 100%;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import Recipe from "./Recipe";
 import "../styles/recipeList.scss";
 import Grid from "@material-ui/core/Grid";
-const RecipeList = ({ state, dispatch }) => {
+const RecipeList = ({ state, dispatch, modalStatus }) => {
   return (
-    <div className="recipes_list_container">
+    <div className={!modalStatus ? "recipes_list_container" : "hidden"}>
       <div className="recipes_list_items">
         <Grid container spacing={3}>
           {!state.isUsedFilter
