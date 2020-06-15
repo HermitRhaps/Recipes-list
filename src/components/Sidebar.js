@@ -41,35 +41,32 @@ const Sidebar = ({ state, dispatch }) => {
         </div>
         <div className="sidebar_control">
           <div className="modal_control">
-            {!modalType ? (
-              <button
-                onClick={handleModalStatusChange}
-                className="sidebar_modal_button"
-                data-type="Operation"
-              >
-                Create recipe
-              </button>
-            ) : (
-              <button className="sidebar_modal_button_disabled" disabled>
-                Curent operation is active
-              </button>
-            )}
+            <button
+              onClick={handleModalStatusChange}
+              className="sidebar_modal_button"
+              data-type="Operation"
+            >
+              Create recipe
+            </button>
+
             <Filter />
           </div>
         </div>
-        <div className="sidebar_recipes">
-          {state.recipes.map((item, index) => (
-            <button
-              key={index}
-              className="sidebar_button"
-              data-type="Show"
-              onClick={handleModalStatusChange}
-              value={index}
-            >
-              {item.text}
-            </button>
-          ))}
-        </div>
+        {state.recipes.length !== 0 ? (
+          <div className="sidebar_recipes">
+            {state.recipes.map((item, index) => (
+              <button
+                key={index}
+                className="sidebar_button"
+                data-type="Show"
+                onClick={handleModalStatusChange}
+                value={index}
+              >
+                {item.text}
+              </button>
+            ))}
+          </div>
+        ) : null}
       </div>
       {handleTypeModal(modalType)}
     </Fragment>

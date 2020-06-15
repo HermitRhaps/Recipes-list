@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../../styles/modal.scss";
 import CreateOrEdit from "./methods/CreateOrEdit";
 import { Conformation } from "./methods/Conformation";

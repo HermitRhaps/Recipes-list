@@ -8,7 +8,7 @@ export const App = () => {
     if (localStorage.getItem("recipes")) {
       dispatch(fetchRecipes());
     }
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <Main />
