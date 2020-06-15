@@ -10,11 +10,12 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import { Modal } from "./modal/Modal";
+import { ModalOut } from "./modal/Modal";
 import { deleteRecipe } from "../redux/actions/deleteRecipe";
 const useStyles = makeStyles({
   root: {
     maxWidth: 300,
+    minHeight: 300,
     maxHeight: 355,
     margin: "1%",
     background: "#e7e5e5",
@@ -72,7 +73,7 @@ const Recipe = ({ index, item, dispatch }) => {
           Delete
         </button>
         {modalStatus ? (
-          <Modal
+          <ModalOut
             isOpen={setModalStatus}
             id={editIndex}
             type={modalType}

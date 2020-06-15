@@ -2,6 +2,7 @@ import React from "react";
 import RecipeList from "./RecipesList";
 import SideBarElements from "./Sidebar";
 import "../styles/main.scss";
+import { Modal } from "./modal/Modal";
 export const Main = () => {
   return (
     <main>

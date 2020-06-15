@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../styles/modal.scss";
 import CreateOrEdit from "./methods/CreateOrEdit";
 import { Conformation } from "./methods/Conformation";
 import Show from "./methods/Show";
-export const Modal = ({ isOpen, id, type, recipeRemove, item }) => {
+import Modal from "@material-ui/core/Modal";
+export const ModalOut = ({ isOpen, id, type, recipeRemove, item }) => {
   const handleModalStatus = () => {
     isOpen(false);
   };
@@ -20,13 +21,15 @@ export const Modal = ({ isOpen, id, type, recipeRemove, item }) => {
     }
   };
   return (
-    <div className="modal_container">
-      <div className="modal_header">
-        <button className="modal_close" onClick={handleModalStatus}>
-          Close
-        </button>
+    <Modal open={handleModalStatus} onClose={handleModalStatus}>
+      <div className="modal_container">
+        <div className="modal_header">
+          <button className="modal_close" onClick={handleModalStatus}>
+            Close
+          </button>
+        </div>
+        {handleTypeModal(type)}
       </div>
-      {handleTypeModal(type)}
-    </div>
+    </Modal>
   );
 };

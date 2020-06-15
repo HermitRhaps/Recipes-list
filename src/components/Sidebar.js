@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { Modal } from "./modal/Modal";
+import { ModalOut } from "./modal/Modal";
 import Filter from "./Filter";
 import "../styles/sideBar.scss";
 import Logo from "../styles/default/logo.jpg";
@@ -23,9 +23,9 @@ const Sidebar = ({ state, dispatch }) => {
   const handleTypeModal = (modalType) => {
     switch (modalType) {
       case "Operation":
-        return <Modal isOpen={handleClose} type="Operation" />;
+        return <ModalOut isOpen={handleClose} type="Operation" />;
       case "Show":
-        return <Modal isOpen={handleClose} type="Show" id={index} />;
+        return <ModalOut isOpen={handleClose} type="Show" id={index} />;
       default:
         return null;
     }
