@@ -14,11 +14,18 @@ import { ModalOut } from "./modal/Modal";
 import { deleteRecipe } from "../redux/actions/deleteRecipe";
 const useStyles = makeStyles({
   root: {
-    maxWidth: 300,
-    minHeight: 300,
-    maxHeight: 355,
-    margin: "1%",
     background: "#e7e5e5",
+    maxWidth: 345,
+    overflowWrap: "break-word",
+  },
+  h3: {
+    fontSize: "1.45rem",
+    color: "black",
+    marginBottom: "3%",
+  },
+  h5: {
+    fontSize: "1.15rem",
+    color: "blue",
   },
 });
 const Recipe = ({ index, item, dispatch }) => {
@@ -35,14 +42,14 @@ const Recipe = ({ index, item, dispatch }) => {
     dispatch(deleteRecipe(editIndex));
   };
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} variant="outlined">
       <CardActionArea disabled>
         <CardMedia component="img" alt="" height="140" image={item.image} />
         <CardContent>
-          <Typography gutterBottom variant="h3">
+          <Typography variant="h3" className={classes.h3}>
             {item.text}
           </Typography>
-          <Typography gutterBottom variant="h5">
+          <Typography variant="h5" className={classes.h5}>
             {item.group}
           </Typography>
         </CardContent>

@@ -10,12 +10,14 @@ const RecipeList = ({ state, dispatch, modalStatus }) => {
         <Grid container spacing={3}>
           {!state.isUsedFilter
             ? state.recipes.map((item, index) => (
-                <Grid item xs={6} sm={3} className="recipe">
+                <Grid item xs={5} sm={3} className="recipe">
                   <Recipe key={index} index={index} item={item} />
                 </Grid>
               ))
             : state.filtered.map((item, index) => (
-                <Recipe key={index} index={index} item={item} />
+                <Grid item xs={5} sm={3} className="recipe">
+                  <Recipe key={index} index={index} item={item} />
+                </Grid>
               ))}
         </Grid>
       </div>
