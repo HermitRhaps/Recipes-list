@@ -1,6 +1,13 @@
 import React from "react";
-import "../../../styles/conformation.scss";
+import { Button, Grid, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  wrapper: {
+    textAlign: "center",
+  },
+});
 export const Conformation = ({ status, remove }) => {
+  const classes = useStyles();
   const handleRemove = () => {
     remove();
     status(false);
@@ -9,22 +16,20 @@ export const Conformation = ({ status, remove }) => {
     status(false);
   };
   return (
-    <div className="confirmation_container">
-      <div className="confirmation_header">
+    <Grid container className={classes.wrapper} spacing={2}>
+      <Grid item xs={12}>
         <h1>Are you sure?</h1>
-      </div>
-      <div className="confirmation_items">
-        <div className="confirmation_item">
-          <button className="confirmation_button" onClick={handleRemove}>
-            Yes
-          </button>
-        </div>
-        <div className="confirmation_item">
-          <button className="confirmation_button" onClick={handleClose}>
-            No
-          </button>
-        </div>
-      </div>
-    </div>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="outlined" onClick={handleRemove}>
+          Yes
+        </Button>
+      </Grid>
+      <Grid item xs={6}>
+        <Button variant="outlined" onClick={handleClose}>
+          No
+        </Button>
+      </Grid>
+    </Grid>
   );
 };

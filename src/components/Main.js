@@ -1,18 +1,17 @@
 import React from "react";
 import RecipeList from "./RecipesList";
 import SideBarElements from "./Sidebar";
-import "../styles/main.scss";
+import { Grid } from "@material-ui/core";
+
 export const Main = () => {
   return (
-    <main>
-      <div className="main_comtainer">
-        <div className="main_side_item">
-          <SideBarElements />
-        </div>
-        <div className="main_item">
-          <RecipeList />
-        </div>
-      </div>
-    </main>
+    <Grid container spacing={2}>
+      <Grid item sm={3} xs={12}>
+        <SideBarElements />
+      </Grid>
+      <Grid item sm={9} xs={12}>
+        <RecipeList />
+      </Grid>
+    </Grid>
   );
 };

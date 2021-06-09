@@ -1,8 +1,23 @@
 import React, { useState, useEffect, Fragment } from "react";
-import "../../../styles/show.scss";
-import { TextField } from "@material-ui/core";
+import {
+  TextField,
+  Grid,
+  makeStyles,
+  Select,
+  MenuItem,
+  Button,
+  Typography,
+} from "@material-ui/core";
+
 import { connect } from "react-redux";
+const useStyles = makeStyles({
+  img: {
+    maxWidth: "12rem",
+    maxHeight: "auto",
+  },
+});
 const Show = ({ item, id, state }) => {
+  const classes = useStyles();
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [recipeGroup, setRecipeGroup] = useState("");
@@ -21,8 +36,33 @@ const Show = ({ item, id, state }) => {
     }
   }, []);
   return (
-    <Fragment>
-      <div className="recipe_card">
+    <Grid container spacing={2}>
+      <Grid item sm={5} xs={12}>
+        <img src={image} alt="" className={classes.img} />
+      </Grid>
+      <Grid item sm={5} xs={12}>
+        <Grid container spacing={1}>
+          <Grid item xs={12}>
+            <Typography>Recipe name: {title}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography>Recipe category: {recipeGroup}</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography>Recipe detail:</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              aria-label="naked"
+              disabled
+              multiline
+              value={description}
+              className="recipe_description"
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      {/* <div className="recipe_card">
         <div className="recipe_row">
           <div className="recipe_img_container">
             <img src={image} alt="" className="recipe_img" />
@@ -48,8 +88,8 @@ const Show = ({ item, id, state }) => {
             />
           </div>
         </div>
-      </div>
-    </Fragment>
+      </div> */}
+    </Grid>
   );
 };
 

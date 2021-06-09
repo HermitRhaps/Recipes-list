@@ -3,18 +3,29 @@ import { connect } from "react-redux";
 import { ModalOut } from "./modal/Modal";
 import Filter from "./Filter";
 import "../styles/sideBar.scss";
-import Logo from "../styles/default/logo.jpg";
-const Sidebar = ({ state, dispatch }) => {
+import { Button, Grid, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  side: {
+    padding: "1rem",
+    textAlign: "center",
+  },
+  list: {
+    textAlign: "center",
+  },
+});
+const Sidebar = ({ state }) => {
+  const classes = useStyles();
   const [modalType, setModalType] = useState("");
   const [index, setIndex] = useState();
   const handleModalStatusChange = (e) => {
-    switch (e.target.attributes.getNamedItem("data-type").value) {
+    switch (e.currentTarget.getAttribute("data-type")) {
       case "Show":
-        setModalType(e.target.attributes.getNamedItem("data-type").value);
-        setIndex(e.target.value);
+        setModalType(e.currentTarget.getAttribute("data-type"));
+        setIndex(e.currentTarget.dataset.index);
         break;
       default:
-        setModalType(e.target.attributes.getNamedItem("data-type").value);
+        setModalType(e.currentTarget.getAttribute("data-type"));
     }
   };
   const handleClose = () => {
@@ -31,45 +42,47 @@ const Sidebar = ({ state, dispatch }) => {
     }
   };
   return (
-    <Fragment>
-      <div className="sidebar_container">
-        <div className="sidebar_logo">
-          <a href="https://github.com/HermitRhaps">
-            <img src={Logo} alt="Project title" className="logo_image" />
-            <p>Made by HermitRhaps</p>
-          </a>
-        </div>
-        <div className="sidebar_control">
-          <div className="modal_control">
-            <button
-              onClick={handleModalStatusChange}
-              className="sidebar_modal_button"
-              data-type="Operation"
-            >
-              Create recipe
-            </button>
+    <Grid container spacing={2} className={classes.side}>
+      <Grid item xs={12}>
+        <a href="https://github.com/HermitRhaps">
+          <p>Made by HermitRhaps</p>
+        </a>
+      </Grid>
 
-            <Filter />
-          </div>
-        </div>
-        {state.recipes.length !== 0 ? (
-          <div className="sidebar_recipes">
-            {state.recipes.map((item, index) => (
-              <button
-                key={index}
-                className="sidebar_button"
-                data-type="Show"
-                onClick={handleModalStatusChange}
-                value={index}
-              >
-                {item.text}
-              </button>
-            ))}
-          </div>
-        ) : null}
-      </div>
+      <Grid item xs={12}>
+        <Button
+          onClick={handleModalStatusChange}
+          fullWidth
+          data-type="Operation"
+          variant="outlined"
+        >
+          Create recipe
+        </Button>
+      </Grid>
+      <Grid item xs={12}>
+        <Filter />
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container spacing={2}>
+          {state.recipes.length !== 0
+            ? state.recipes.map((item, index) => (
+                <Grid item xs={6}>
+                  <Button
+                    key={index}
+                    variant="outlined"
+                    data-type="Show"
+                    onClick={handleModalStatusChange}
+                    data-index={index}
+                  >
+                    {item.text}
+                  </Button>
+                </Grid>
+              ))
+            : null}
+        </Grid>
+      </Grid>
       {handleTypeModal(modalType)}
-    </Fragment>
+    </Grid>
   );
 };
 

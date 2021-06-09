@@ -9,9 +9,5 @@ export const App = () => {
       dispatch(fetchRecipes());
     }
   }, [dispatch]);
-  return (
-    <div>
-      <Main />
-    </div>
-  );
+  return <Main />;
 };

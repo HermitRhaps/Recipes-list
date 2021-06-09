@@ -3,7 +3,13 @@ import "../../styles/modal.scss";
 import CreateOrEdit from "./methods/CreateOrEdit";
 import { Conformation } from "./methods/Conformation";
 import Show from "./methods/Show";
-import Modal from "@material-ui/core/Modal";
+
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+} from "@material-ui/core";
 export const ModalOut = ({ isOpen, id, type, recipeRemove, item }) => {
   const handleModalStatus = () => {
     isOpen(false);
@@ -21,15 +27,13 @@ export const ModalOut = ({ isOpen, id, type, recipeRemove, item }) => {
     }
   };
   return (
-    <Modal open={handleModalStatus} onClose={handleModalStatus}>
-      <div className="modal_container">
-        <div className="modal_header">
-          <button className="modal_close" onClick={handleModalStatus}>
-            Close
-          </button>
-        </div>
-        {handleTypeModal(type)}
-      </div>
-    </Modal>
+    <Dialog open={handleModalStatus} onClose={handleModalStatus}>
+      <DialogActions>
+        <Button onClick={handleModalStatus} variant="outlined">
+          Close
+        </Button>
+      </DialogActions>
+      <DialogContent>{handleTypeModal(type)}</DialogContent>
+    </Dialog>
   );
 };

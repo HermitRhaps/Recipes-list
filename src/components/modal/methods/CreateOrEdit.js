@@ -1,20 +1,24 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createRecipe } from "../../../redux/actions/createRecipe";
 import { editRecipe } from "../../../redux/actions/editRecipe";
-import "../../../styles/modal.scss";
-import { TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import defaultImg from "../../../styles/download.png";
+import {
+  TextField,
+  Grid,
+  makeStyles,
+  Select,
+  MenuItem,
+  Button,
+} from "@material-ui/core";
+
 const useStyles = makeStyles({
-  textarea: {
-    overflowY: "scroll",
-    maxHeight: 200,
-    marginTop: 2,
-    fontSize: "1.05rem",
-  },
   error: {
     border: "2px solid red",
     borderRadius: "5%",
+  },
+  select: {
+    color: "gray",
   },
 });
 const CreateOrEdit = ({ dispatch, id, state, status, item }) => {
@@ -39,13 +43,10 @@ const CreateOrEdit = ({ dispatch, id, state, status, item }) => {
       dispatch(editRecipe(id, title, image, recipeGroup, description));
       status(false);
     } else {
-      if (
-        title.trim() &&
-        image.trim() &&
-        recipeGroup.trim() &&
-        description.trim()
-      ) {
-        dispatch(createRecipe(title, image, recipeGroup, description));
+      if (title.trim() && recipeGroup.trim() && description.trim()) {
+        dispatch(
+          createRecipe(title, image || defaultImg, recipeGroup, description)
+        );
         status(false);
       } else {
         setError(false);
@@ -73,81 +74,86 @@ const CreateOrEdit = ({ dispatch, id, state, status, item }) => {
     setDescription(e.target.value);
   };
   return (
-    <Fragment>
-      <form
-        onSubmit={submitForm}
-        className="modal_form"
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          id="outlined-basic"
-          placeholder="Recipe title"
-          variant="outlined"
-          className={noError ? "titleInput" : "error"}
-          data-mydatafield="asdasdasdaad"
-          value={title}
-          onChange={handleTitleChange}
-        />
-
-        <input
-          type="file"
-          name="file"
-          id="file"
-          className="inputFile"
-          onChange={submitImage}
-          accept="image/*"
-        />
-        {!image ? (
-          <label
-            htmlFor="file"
-            className={noError ? "inputFileLabel" : "errorLabel"}
-            variant="outlined"
-          >
-            Choose a image
-          </label>
-        ) : (
-          <label htmlFor="file" className="inputFileLabel" variant="outlined">
-            Change image: {image}
-          </label>
-        )}
-        <select
-          className={noError ? "inputSelect" : "errorSelect"}
-          defaultValue={item ? recipeGroup : "Select recipe category"}
-          onChange={handleGroupChange}
-          required
+    <Grid container>
+      <Grid item xs={12}>
+        <form
+          onSubmit={submitForm}
+          className="modal_form"
+          noValidate
+          autoComplete="off"
         >
-          <option defaultValue disabled>
-            {item ? recipeGroup : "Select recipe category"}
-          </option>
-          {state.categories.map((group, index) => (
-            <option key={index} value={group} className="inputOption">
-              {group}
-            </option>
-          ))}
-        </select>
-
-        <TextField
-          className={noError ? classes.textarea : "errorDescription"}
-          placeholder="Please enter recipe description"
-          multiline
-          fullWidth
-          variant="outlined"
-          value={description}
-          onChange={handleDescriptionChange}
-          required
-        />
-        {item ? (
-          <button type="submit" className="modal_button">
-            Edit recipe
-          </button>
-        ) : (
-          <button type="submit" className="modal_button">
-            Create recipe
-          </button>
-        )}
-      </form>
-    </Fragment>
+          <Grid container justify="center" spacing={2}>
+            <Grid item xs={8}>
+              <TextField
+                fullWidth
+                label="Recipe title"
+                variant="outlined"
+                className={noError ? false : "error"}
+                data-mydatafield="asdasdasdaad"
+                value={title}
+                onChange={handleTitleChange}
+                required
+              />
+            </Grid>
+            <Grid item xs={8}>
+              <TextField
+                type="file"
+                fullWidth
+                variant="outlined"
+                onChange={submitImage}
+                accept="image/*"
+              />
+            </Grid>
+            <Grid item xs={8}>
+              <Select
+                onChange={handleGroupChange}
+                required
+                fullWidth
+                variant="outlined"
+                className={classes.select}
+                value={recipeGroup ? recipeGroup : "Select recipe category"}
+              >
+                <MenuItem
+                  defaultValue
+                  disabled
+                  value={"Select recipe category"}
+                >
+                  {"Select recipe category"}
+                </MenuItem>
+                {state.categories.map((group, index) => (
+                  <MenuItem key={index} value={group}>
+                    {group}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
+            <Grid item xs={8}>
+              <TextField
+                fullWidth
+                multiline
+                label="Recipe description"
+                variant="outlined"
+                className={noError ? false : "error"}
+                value={description}
+                onChange={handleDescriptionChange}
+                required
+              />
+            </Grid>
+            <Grid item xs={8}>
+              {item ? (
+                <Button type="submit" variant="outlined">
+                  Edit recipe
+                </Button>
+              ) : (
+                <Button type="submit" variant="outlined">
+                  Create recipe
+                </Button>
+              )}
+            </Grid>
+          </Grid>
+        </form>
+      </Grid>
+    </Grid>
   );
 };
 

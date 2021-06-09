@@ -2,13 +2,19 @@ import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { filterRecipe } from "../redux/actions/filterRecipe";
 import { resetFilter } from "../redux/actions/resetFilter";
-import "../styles/filter.scss";
+import { Grid, Button, Select, MenuItem, makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  select: {
+    color: "gray",
+  },
+});
 const Filter = ({ state, dispatch }) => {
+  const classes = useStyles();
   const [selectedFilter, setSelectedFilter] = useState("");
   const handleFilterCategoryChange = (e) => {
     setSelectedFilter(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedFilter) {
@@ -21,52 +27,65 @@ const Filter = ({ state, dispatch }) => {
     setSelectedFilter("");
   };
   return (
-    <Fragment>
-      <div className="filter_container">
+    <Grid container>
+      <Grid item xs={12}>
         <form onSubmit={handleSubmit} className="filter_form">
-          <div className="filter_select_container">
-            {state.recipes.length !== 0 ? (
-              <select
-                className="filter_select"
-                onChange={handleFilterCategoryChange}
-                value={
-                  selectedFilter ? selectedFilter : "Filter was not selected"
-                }
-              >
-                <option defaultValue disabled>
-                  {selectedFilter ? selectedFilter : "Filter was not selected"}
-                </option>
-                {state.categories.map((item, index) => (
-                  <option key={index}>{item}</option>
-                ))}
-              </select>
-            ) : (
-              <select
-                disabled
-                className="filter_select_disabled"
-                defaultValue="There no recipes"
-              >
-                <option defaultValue disabled>
-                  There no recipes
-                </option>
-              </select>
-            )}
-          </div>
-          <div className="filter_button_container">
-            <div>
-              <button type="submit" className="filter_button">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              {state.recipes.length !== 0 ? (
+                <Select
+                  fullWidth
+                  variant="outlined"
+                  onChange={handleFilterCategoryChange}
+                  value={
+                    selectedFilter ? selectedFilter : "Filter was not selected"
+                  }
+                  className={classes.select}
+                >
+                  <MenuItem
+                    defaultValue
+                    disabled
+                    value={"Filter was not selected"}
+                  >
+                    {selectedFilter
+                      ? selectedFilter
+                      : "Filter was not selected"}
+                  </MenuItem>
+                  {state.categories.map((item, index) => (
+                    <MenuItem key={index} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              ) : (
+                <Select
+                  disabled
+                  defaultValue="There no recipes"
+                  fullWidth
+                  variant="outlined"
+                  value={"There no recipes"}
+                >
+                  <MenuItem defaultValue disabled value={"There no recipes"}>
+                    There no recipes
+                  </MenuItem>
+                </Select>
+              )}
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button type="submit" variant="outlined" fullWidth>
                 Filter
-              </button>
-            </div>
-            <div>
-              <button className="filter_button" onClick={handleReset}>
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button variant="outlined" onClick={handleReset} fullWidth>
                 Reset
-              </button>
-            </div>
-          </div>
+              </Button>
+            </Grid>
+          </Grid>
         </form>
-      </div>
-    </Fragment>
+      </Grid>
+    </Grid>
   );
 };
 
